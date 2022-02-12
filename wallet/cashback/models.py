@@ -32,6 +32,22 @@ class Type(models.Model):
     def __str__(self):
         return f"Type: ({self.id}) {self.name} - {self.percentage_cashback} %"
 
+class Purchase(models.Model):
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        help_text="Customer que fez essa compra"
+    )
+    total = models.FloatField(
+        default=0,
+        help_text="Total da minha compra"
+    )
+    sold_at = models.DateTimeField(
+        verbose_name="data de venda",
+        help_text="Data que aconteceu a compra"
+    )
+
+
 class Product(models.Model):
     type = models.ForeignKey(
         Type,
@@ -42,3 +58,9 @@ class Product(models.Model):
     )
     value = models.FloatField()
     qty = models.IntegerField()
+    purchase = models.ForeignKey(
+        Purchase,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
