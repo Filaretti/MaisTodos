@@ -1,6 +1,7 @@
 from django.db import models
-
 # Create your models here.
+
+
 class Customer(models.Model):
     document = models.CharField(
         max_length=15,
@@ -31,6 +32,7 @@ class Type(models.Model):
 
     def __str__(self):
         return f"Type: ({self.id}) {self.name} - {self.percentage_cashback} %"
+
 
 class Purchase(models.Model):
     customer = models.ForeignKey(
@@ -63,4 +65,21 @@ class Product(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL
+    )
+    total_value = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Total calculado do value * qty"
+    )
+    calculated_cashback = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Total calculado do cashback "
+                  "formula: (total_value * (type.percentage_cashback / 100))"
+    )
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
     )

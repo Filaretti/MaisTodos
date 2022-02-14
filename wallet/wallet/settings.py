@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
+AUTHENTICATION_TOKEN = "mfkd2&7-yi=q)++"
 # Application definition
 
 INSTALLED_APPS = [
