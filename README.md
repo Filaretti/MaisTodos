@@ -6,7 +6,7 @@
 ## como instalar o django
 exemplo:
  ```    
-    pip install django
+    pip install -r requirements.txt
  ```
 
  ## como rodar o servidor local    
