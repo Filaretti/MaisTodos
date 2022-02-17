@@ -33,9 +33,12 @@ usuário: admin
 
 senha; 123456
 
-PS²: No momento não temos validação de que o *type* do product informado está cadastrado com valor default, ocasionando um erro, portando será necessário fazer o cadastro previamente.
+PS²: No momento não temos validação de que o *type* do product informado está cadastrado com valor default, ocasionando um erro, portanto será necessário fazer o cadastro previamente.
 
 *[Tecnologias utilizadas](tecnologias-utilizadas)
+
+#Python
+#Django
 
 *[Desenvolverdores](desenvolvedores)
 ##Marcelle Filaretti
