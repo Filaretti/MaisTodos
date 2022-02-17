@@ -25,8 +25,17 @@
 
 *[Acesso ao Projeto](acesso-ao-prejeto)
 
+OBS: Será necessário cadastrar as secções (type) esperadas e quanto de cashback deverá ser aplicado nesse item
+para isso, será necessário ir em :
+(http://localhost:8000/admin)
+
+usuário: admin
+
+senha; 123456
+
+PS²: No momento não temos validação de que o *type* do product informado está cadastrado com valor default, ocasionando um erro, portando será necessário fazer o cadastro previamente.
+
 *[Tecnologias utilizadas](tecnologias-utilizadas)
 
 *[Desenvolverdores](desenvolvedores)
-
-*[Licença](licença)
+##Marcelle Filaretti
