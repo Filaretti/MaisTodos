@@ -1,5 +1,9 @@
 import json
 
+from datetime import datetime
+
+import requests
+
 from django.conf import settings
 from django.shortcuts import render
 from django.http import (
@@ -42,8 +46,14 @@ def receive_payload(request):
     customer.name = posted_data["customer"]["name"]
 
     purchase = Purchase()
+    try:
+        purchase.sold_at = datetime.strptime(posted_data["sold_at"], "%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        return JsonResponse({
+            "status": "error",
+            "message": f"A data de venda é inválida"
+        }, status=400)
     purchase.total = float(posted_data["total"])
-    purchase.sold_at = posted_data["sold_at"]
 
     total_items = 0
     total_cashback = 0
@@ -86,7 +96,7 @@ def receive_payload(request):
 
     data = {
         "document": customer.document,
-        "cashback": purchase.total
+        "cashback": total_cashback
     }
 
     response = requests.post("https://5efb30ac80d8170016f7613d.mockapi.io/api/mock/Cashback", json=data)
