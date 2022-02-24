@@ -7,7 +7,7 @@ from django.http import (
 )
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Customer, Purchase, Type, Product
+from .models import Customer, Purchase, Type, Product, SaveRequest
 
 from .utils import ValidCPF
 
@@ -22,6 +22,8 @@ def receive_payload(request):
             "status": "error",
             "message": f"O código de autenticação é inválido"
         }, status=401)
+    save_request = SaveRequest()
+    save_request.received_api = request.body
     posted_data = json.loads(request.body)
     document = posted_data["customer"]["document"]
 
@@ -81,4 +83,14 @@ def receive_payload(request):
         product.purchase = purchase
         product.customer = customer
         product.save()
+
+    data = {
+        "document": customer.document,
+        "cashback": purchase.total
+    }
+
+    response = requests.post("https://5efb30ac80d8170016f7613d.mockapi.io/api/mock/Cashback", json=data)
+    save_request.response_api_maistodos = response.text
+    save_request.save()
+
     return JsonResponse({"status": "ok", "purchase": purchase.id})

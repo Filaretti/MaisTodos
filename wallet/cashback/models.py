@@ -83,3 +83,8 @@ class Product(models.Model):
         null=True,
         blank=True,
     )
+
+
+class SaveRequest(models.Model):
+    received_api = models.TextField(null=True, blank=True)
+    response_api_maistodos = models.TextField(null=True, blank=True)

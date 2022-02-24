@@ -37,8 +37,8 @@ PS²: No momento não temos validação de que o *type* do product informado est
 
 *[Tecnologias utilizadas](tecnologias-utilizadas)
 
-#Python
-#Django
+####Python
+####Django
 
 *[Desenvolverdores](desenvolvedores)
 ##Marcelle Filaretti
